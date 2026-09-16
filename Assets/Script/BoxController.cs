@@ -95,7 +95,8 @@ public class BoxController : MonoBehaviour
 
         private void OnToggleTime(InputAction.CallbackContext context)
         {
-            Debug.Log("Action: time paused");
+            GameEventSystem.InvokeToggleTime();
+            
         }
         private void HandleRawInput()
         {

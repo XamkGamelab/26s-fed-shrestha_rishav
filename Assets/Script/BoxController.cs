@@ -24,7 +24,6 @@ public class BoxController : MonoBehaviour
         private void OnEnable()
         {
             moveAction.action.Enable();
-            zoomAction.action.Enable();
             selectAction.action.Enable();
             cancelAction.action.Enable();
             rotateObjectAction.action.Enable();
@@ -42,7 +41,6 @@ public class BoxController : MonoBehaviour
             toggleTimeAction.action.performed -= OnToggleTime;
 
             moveAction.action.Disable();
-            zoomAction.action.Disable();
             selectAction.action.Disable();
             cancelAction.action.Disable();
             rotateObjectAction.action.Disable();

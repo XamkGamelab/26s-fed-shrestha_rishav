@@ -4,9 +4,28 @@ public class GameManager : MonoBehaviour
 {
     public static GameState CurrentState { get; set; }
 
+    [Header("Simulation")]
+    [SerializeField] private GameObject _simulationManagerPrefab;
+
+    private GameObject _simulationManager;
+    private GameState _previousState;
+
     private void Awake()
     {
         CurrentState = GameState.MainMenu;
+        _previousState = GameState.MainMenu;
+    }
+
+    private void OnEnable()
+    {
+        GameEventSystem.OnToggleTime += HandleToggleTime;
+        GameEventSystem.OnGameStateChanged += HandleGameStateChanged;
+    }
+
+    private void OnDisable()
+    {
+        GameEventSystem.OnToggleTime -= HandleToggleTime;
+        GameEventSystem.OnGameStateChanged -= HandleGameStateChanged;
     }
 
     public static void ChangeState(GameState newState)
@@ -15,28 +34,49 @@ public class GameManager : MonoBehaviour
         GameEventSystem.InvokeGameStateChanged(newState);
     }
 
-    public void OnEnable()
+    private void HandleGameStateChanged(GameState state)
     {
-        GameEventSystem.OnToggleTime += HandleToggleTime;
+        if (state == GameState.Playing &&
+            _previousState == GameState.MainMenu)
+        {
+            StartGameplay();
+        }
+        else if (state == GameState.MainMenu &&
+                 (_previousState == GameState.Playing ||
+                  _previousState == GameState.Paused))
+        {
+            StopGameplay();
+        }
+
+        _previousState = state;
     }
 
-    public void OnDisable()
+    private void StartGameplay()
     {
-        GameEventSystem.OnToggleTime -= HandleToggleTime;
+        _simulationManager = Instantiate(_simulationManagerPrefab);
+    }
+
+    private void StopGameplay()
+    {
+        if (_simulationManager != null)
+        {
+            Destroy(_simulationManager);
+            _simulationManager = null;
+        }
     }
 
     public void HandleToggleTime()
     {
-        if(CurrentState == GameState.Playing)
+        if (CurrentState == GameState.Playing)
             ChangeState(GameState.Paused);
-        else if(CurrentState == GameState.Paused)
+        else if (CurrentState == GameState.Paused)
             ChangeState(GameState.MainMenu);
     }
-    public void ChangetoMainMenu()=> ChangeState(GameState.MainMenu);
-    public void ChangetoPlaying()=> ChangeState(GameState.Playing);
-    public void ChangetoPaused()=> ChangeState(GameState.Paused);
+
+    public void ChangetoMainMenu() => ChangeState(GameState.MainMenu);
+    public void ChangetoPlaying() => ChangeState(GameState.Playing);
+    public void ChangetoPaused() => ChangeState(GameState.Paused);
 }
-  
 
 public enum GameState
 {

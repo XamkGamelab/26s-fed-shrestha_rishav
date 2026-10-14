@@ -78,6 +78,7 @@ public class GameManager : MonoBehaviour
     public void ChangetoPaused() => ChangeState(GameState.Paused);
 }
 
+
 public enum GameState
 {
     Playing,

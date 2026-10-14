@@ -6,11 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="4fef4f2f-945b-4601-9d59-b11379484d4b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.26s-fed-shrestha_rishav/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.26s-fed-shrestha_rishav/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prehabs/CinemachineCamera.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prehabs/CinemachineCamera.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prehabs/Cube.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prehabs/Cube.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prehabs/SimulationManager.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prehabs/SimulationManager.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/BoxController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/BoxController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/CameraController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/CameraController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/GameEventSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/GameEventSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/GameManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/SimulationManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/SimulationManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -22,6 +22,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Script/InputReader.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/SimulationManager.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
@@ -100,7 +101,7 @@
       <workItem from="1789581864985" duration="4349000" />
       <workItem from="1790195072921" duration="5948000" />
       <workItem from="1790201322878" duration="2000" />
-      <workItem from="1791983662187" duration="4189000" />
+      <workItem from="1791983662187" duration="6468000" />
     </task>
     <servers />
   </component>

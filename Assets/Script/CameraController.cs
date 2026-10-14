@@ -24,28 +24,26 @@ public class CameraController : MonoBehaviour
     [Header("Rotation")]
     [SerializeField] private float _rotationSpeed = 20f;
 
-    [Header("Input")]
-    [SerializeField] private InputActionReference _zoomAction;
-    [SerializeField] private InputActionReference _rotateAction;
 
+
+    [SerializeField] public InputReader inputReader;
+    
     [SerializeField]private float _currentZoom;
     private Vector3 _anchorPoint;
+    private bool initialized = false;
+
+    public void Initialize(InputReader inputReader,Transform worldCursor)
+    {
+        this.inputReader = inputReader;
+        this.worldCursor = worldCursor;
+        initialized = true;
+    }
 
     private void Awake()
     {
         _camera = GetComponent<CinemachineCamera>();
     }
-    private void OnEnable()
-    {
-        _zoomAction.action.Enable();
-        _rotateAction.action.Enable();
-    }
 
-    private void OnDisable()
-    {
-        _zoomAction.action.Disable();
-        _rotateAction.action.Disable();
-    }
 
     private void Update()
     {
@@ -78,7 +76,7 @@ public class CameraController : MonoBehaviour
     private void CalculateZoomValue()
     {
         _currentZoom = Mathf.Clamp(
-            _currentZoom - _zoomAction.action.ReadValue<float>()
+            _currentZoom - inputReader.zoomValue
             * _zoomSpeed * Time.deltaTime,
             _minZoom,
             _maxZoom
@@ -87,7 +85,7 @@ public class CameraController : MonoBehaviour
 
     private void CalculateRotation()
     {
-        float input = _rotateAction.action.ReadValue<float>();
+        float input = inputReader.rotateObjectValue;
         cameraRotation += input * _rotationSpeed * Time.deltaTime;
         
     }

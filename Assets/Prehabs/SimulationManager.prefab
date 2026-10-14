@@ -46,3 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SimulationManager
   _worldCursorPrefab: {fileID: 2864946591941704844, guid: 28275c4f097851a408b20eaaac5ef60a, type: 3}
   _cameraPrefab: {fileID: 2325352206826817819, guid: 57afd9437311e564ba1dcf44d7ec04d4, type: 3}
+  _simulationManagerPrefab: {fileID: 9056949676557160960, guid: ce182205b7b25a4458ee9fead9bfbe06, type: 3}

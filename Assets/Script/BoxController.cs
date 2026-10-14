@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public class BoxController : MonoBehaviour
 {
+    
      [Header("Movement")]
         [SerializeField] private float moveSpeed = 5f;
     
@@ -13,83 +14,47 @@ public class BoxController : MonoBehaviour
         [Header("Rotation")]
         [SerializeField] private float rotationSpeed = 90f;
     
-        [Header("Input Actions")]
-        [SerializeField] private InputActionReference moveAction;
-        [SerializeField] private InputActionReference zoomAction;
-        [SerializeField] private InputActionReference selectAction;
-        [SerializeField] private InputActionReference cancelAction;
-        [SerializeField] private InputActionReference rotateObjectAction;
-        [SerializeField] private InputActionReference toggleTimeAction;
+        [Header("Input Reader")]
+        [SerializeField] private InputReader inputReader;
+        private bool initialized = false;
+
 
         private void OnEnable()
         {
-            moveAction.action.Enable();
-            selectAction.action.Enable();
-            cancelAction.action.Enable();
-            rotateObjectAction.action.Enable();
-            toggleTimeAction.action.Enable();
-
-            selectAction.action.performed += OnSelect;
-            cancelAction.action.performed += OnCancel;
-            toggleTimeAction.action.performed += OnToggleTime;
+            GameEventSystem.OnResetCursor += ResetCursor;
         }
-
         private void OnDisable()
         {
-            selectAction.action.performed -= OnSelect;
-            cancelAction.action.performed -= OnCancel;
-            toggleTimeAction.action.performed -= OnToggleTime;
-
-            moveAction.action.Disable();
-            selectAction.action.Disable();
-            cancelAction.action.Disable();
-            rotateObjectAction.action.Disable();
-            toggleTimeAction.action.Disable();
+            GameEventSystem.OnResetCursor -= ResetCursor;
         }
+        
         private void Update()
         {
             HandleMove();
             HandleRotation();
-            HandleRawInput();
         }
         
         private void HandleMove()
         {
-            Vector2 input = moveAction.action.ReadValue<Vector2>();
+            Vector2 input = inputReader.moveValue;
             Vector3 movement = new Vector3(input.x, 0f, input.y);
             transform.position += movement * moveSpeed * Time.deltaTime;
         }
         
         private void HandleRotation()
         {
-            float rotationInput = rotateObjectAction.action.ReadValue<float>();
+            float rotationInput = inputReader.rotateObjectValue;
             if (Mathf.Abs(rotationInput) > 0.01f)
             { 
                 float rotation = rotationInput * rotationSpeed * Time.deltaTime;
                 transform.Rotate(0f, rotation, 0f);
             }
         }
-        private void OnSelect(InputAction.CallbackContext context)
-        {
-            Debug.Log("Action: select called");
-        }
 
-        private void OnCancel(InputAction.CallbackContext context)
+        public void Initialize(InputReader inputReader)
         {
-            Debug.Log("Action: cancel called");
-        }
-
-        private void OnToggleTime(InputAction.CallbackContext context)
-        {
-            GameEventSystem.InvokeToggleTime();
-            
-        }
-        private void HandleRawInput()
-        {
-            if (Keyboard.current != null && Keyboard.current.gKey.wasPressedThisFrame)
-            {
-                ResetCursor();
-            }
+            this.inputReader = inputReader;
+            initialized = true;
         }
 
         private void ResetCursor()

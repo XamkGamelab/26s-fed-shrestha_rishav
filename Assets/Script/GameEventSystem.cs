@@ -5,10 +5,15 @@ public class GameEventSystem : MonoBehaviour
 {
     public static event Action<GameState> OnGameStateChanged;
     public static event Action OnToggleTime;
+    public static event Action OnResetCursor;
     
     public static void InvokeToggleTime()
     {
         OnToggleTime?.Invoke();
+    }
+    public static void InvokeResetCursor()
+    {
+        OnResetCursor?.Invoke();
     }
     public static void InvokeGameStateChanged(GameState state)
     {

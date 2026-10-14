@@ -25,16 +25,10 @@ public class SimulationManager : MonoBehaviour
     {
         _camera = Instantiate(_cameraPrefab, transform);
 
-        CinemachineCamera cinemachineCamera =
-            _camera.GetComponent<CinemachineCamera>();
-
-        cinemachineCamera.Target.TrackingTarget =
-            _worldCursor.transform;
-
         CameraController cameraController =
             _camera.GetComponent<CameraController>();
 
-        cameraController._worldCursor =
+        cameraController.worldCursor =
             _worldCursor.transform;
     }
 }

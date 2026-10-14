@@ -118,7 +118,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4173ca55d9548ce44b77cb85c0bd110e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraController
-  _worldCursor: {fileID: 0}
+  worldCursor: {fileID: 0}
+  cameraDistance: 4
+  cameraAngle: 65
   _zoomSpeed: 5
   _minZoom: 5
   _maxZoom: 20

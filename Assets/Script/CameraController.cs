@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Unity.Cinemachine;
@@ -6,39 +7,34 @@ public class CameraController : MonoBehaviour
 {
     [Header("Camera")]
     private CinemachineCamera _camera;
-    public Transform _worldCursor;
+    public Transform worldCursor;
+    [SerializeField] private float cameraDistance = 10f;
+    [ Range(0f, 90f)]
+    [SerializeField] private float cameraAngle = 90f;
+    [Range(0f, 360f)]
+    public float cameraRotation = 0f;
+    
+    [SerializeField] private float _followSpeed = 5f;
 
     [Header("Zoom")]
     [SerializeField] private float _zoomSpeed = 5f;
     [SerializeField] private float _minZoom = 5f;
-    [SerializeField] private float _maxZoom = 20f;
+    [SerializeField] private float _maxZoom = 10f;
 
     [Header("Rotation")]
-    [SerializeField] private float _rotationSpeed = 90f;
+    [SerializeField] private float _rotationSpeed = 20f;
 
     [Header("Input")]
     [SerializeField] private InputActionReference _zoomAction;
     [SerializeField] private InputActionReference _rotateAction;
 
-    private float _currentZoom;
+    [SerializeField]private float _currentZoom;
+    private Vector3 _anchorPoint;
 
     private void Awake()
     {
         _camera = GetComponent<CinemachineCamera>();
     }
-
-    public void Initialize(Transform worldCursor)
-    {
-        _worldCursor = worldCursor;
-
-        _camera.Target.TrackingTarget = _worldCursor;
-
-        _currentZoom = Vector3.Distance(
-            _camera.transform.position,
-            _worldCursor.position
-        );
-    }
-
     private void OnEnable()
     {
         _zoomAction.action.Enable();
@@ -53,50 +49,46 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        if (_worldCursor == null)
+        if (worldCursor == null)
             return;
 
-        HandleZoom();
-        HandleRotation();
+        ; 
+        CalculateZoomValue();
+        CalculateRotation();
+        HandlePlayerFollow();
     }
 
-    private void HandleZoom()
+    private void HandlePlayerFollow( )
     {
-        float input = _zoomAction.action.ReadValue<float>();
+        cameraDistance = Mathf.Lerp(cameraDistance, _currentZoom, Time.deltaTime*5f);
+        Vector3 cursorPos= worldCursor.position;
+        Vector3 direction = Quaternion.Euler(cameraAngle, cameraRotation, 0f) * Vector3.back;
+        Vector3 TargetPosition = cursorPos + direction * cameraDistance; ;
+        _camera.transform.position = Vector3.Lerp(
+            _camera.transform.position,
+            TargetPosition,
+            Time.deltaTime* _followSpeed
+        );
+        _anchorPoint = Vector3.Lerp(_anchorPoint, 
+            cursorPos,
+            Time.deltaTime* _followSpeed);
+        _camera.transform.LookAt((_anchorPoint));
+    }
 
-        if (Mathf.Abs(input) < 0.01f)
-            return;
-
-        _currentZoom -= input * _zoomSpeed * Time.deltaTime;
-
+    private void CalculateZoomValue()
+    {
         _currentZoom = Mathf.Clamp(
-            _currentZoom,
+            _currentZoom - _zoomAction.action.ReadValue<float>()
+            * _zoomSpeed * Time.deltaTime,
             _minZoom,
             _maxZoom
         );
-
-        Vector3 direction =
-            (_camera.transform.position - _worldCursor.position).normalized;
-
-        _camera.transform.position =
-            _worldCursor.position + direction * _currentZoom;
     }
 
-    private void HandleRotation()
+    private void CalculateRotation()
     {
         float input = _rotateAction.action.ReadValue<float>();
-
-        if (Mathf.Abs(input) < 0.01f)
-            return;
-
-        float rotation = input * _rotationSpeed * Time.deltaTime;
-
-        Vector3 direction =
-            _camera.transform.position - _worldCursor.position;
-
-        direction = Quaternion.Euler(0f, rotation, 0f) * direction;
-
-        _camera.transform.position =
-            _worldCursor.position + direction;
+        cameraRotation += input * _rotationSpeed * Time.deltaTime;
+        
     }
 }

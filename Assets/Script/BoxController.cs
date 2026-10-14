@@ -49,7 +49,6 @@ public class BoxController : MonoBehaviour
         private void Update()
         {
             HandleMove();
-            HandleZoom();
             HandleRotation();
             HandleRawInput();
         }
@@ -60,18 +59,7 @@ public class BoxController : MonoBehaviour
             Vector3 movement = new Vector3(input.x, 0f, input.y);
             transform.position += movement * moveSpeed * Time.deltaTime;
         }
-
-        private void HandleZoom()
-        {
-            float zoomInput = zoomAction.action.ReadValue<float>();
-            if (Mathf.Abs(zoomInput) > 0.01f)
-            { 
-                Vector3 newScale = transform.localScale;
-                float scaleChange = zoomInput * zoomSpeed * Time.deltaTime;
-                newScale += Vector3.one * scaleChange;
-                transform.localScale = Vector3.one * newScale.x;
-            }
-        }
+        
         private void HandleRotation()
         {
             float rotationInput = rotateObjectAction.action.ReadValue<float>();

@@ -2,7 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class BoxController : MonoBehaviour
+public class WorldCursor : MonoBehaviour
 {
     
      [Header("Movement")]
@@ -17,7 +17,7 @@ public class BoxController : MonoBehaviour
         [Header("Input Reader")]
         [SerializeField] private InputReader inputReader;
         private bool initialized = false;
-
+   
 
         private void OnEnable()
         {
@@ -31,7 +31,16 @@ public class BoxController : MonoBehaviour
         private void Update()
         {
             HandleMove();
-            HandleRotation();
+            var mouse = Mouse.current;
+            if (mouse == null)
+            {
+                return;
+            }
+            inputReader.InputState.CursorPosition = mouse.position.value;
+            Debug.DrawRay(Camera.main.transform.position,
+                Camera.main.ScreenPointToRay(
+                    new Vector3(inputReader.InputState.CursorPosition.x, inputReader.InputState.CursorPosition.y)).direction * 100f,
+                Color.red);
         }
         
         private void HandleMove()
@@ -41,15 +50,6 @@ public class BoxController : MonoBehaviour
             transform.position += movement * moveSpeed * Time.deltaTime;
         }
         
-        private void HandleRotation()
-        {
-            float rotationInput = inputReader.rotateObjectValue;
-            if (Mathf.Abs(rotationInput) > 0.01f)
-            { 
-                float rotation = rotationInput * rotationSpeed * Time.deltaTime;
-                transform.Rotate(0f, rotation, 0f);
-            }
-        }
 
         public void Initialize(InputReader inputReader)
         {

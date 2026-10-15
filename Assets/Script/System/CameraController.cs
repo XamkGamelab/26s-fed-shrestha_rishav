@@ -1,4 +1,5 @@
 using System;
+using System.Reflection.Metadata;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Unity.Cinemachine;
@@ -23,6 +24,9 @@ public class CameraController : MonoBehaviour
 
     [Header("Rotation")]
     [SerializeField] private float _rotationSpeed = 20f;
+    
+    
+    public bool isPaused;
 
 
 
@@ -47,10 +51,8 @@ public class CameraController : MonoBehaviour
 
     private void Update()
     {
-        if (worldCursor == null)
+        if (worldCursor == null||isPaused)
             return;
-
-        ; 
         CalculateZoomValue();
         CalculateRotation();
         HandlePlayerFollow();
@@ -85,8 +87,23 @@ public class CameraController : MonoBehaviour
 
     private void CalculateRotation()
     {
-        float input = inputReader.rotateObjectValue;
+        float input = inputReader.rotateValue;
         cameraRotation += input * _rotationSpeed * Time.deltaTime;
         
+    }
+
+
+    private void OnEnable()
+    {
+        GameEventSystem.TogglePauseGame+=HandlePause;
+    }
+    private void OnDisable()
+    {
+        GameEventSystem.TogglePauseGame-=HandlePause;
+    }
+
+    public void HandlePause(bool isPaused)
+    {
+        this.isPaused=isPaused;
     }
 }

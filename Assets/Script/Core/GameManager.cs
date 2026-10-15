@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -10,6 +11,14 @@ public class GameManager : MonoBehaviour
     private GameObject _simulationManager;
     private GameState _previousState;
 
+    private void Update()
+    {
+        if (CurrentState == GameState.Paused)
+        {
+            
+        }
+    }
+
     private void Awake()
     {
         CurrentState = GameState.MainMenu;
@@ -18,13 +27,13 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
-        GameEventSystem.OnToggleTime += HandleToggleTime;
+        GameEventSystem.OnBackPressed += ToggleGameState;
         GameEventSystem.OnGameStateChanged += HandleGameStateChanged;
     }
 
     private void OnDisable()
     {
-        GameEventSystem.OnToggleTime -= HandleToggleTime;
+        GameEventSystem.OnBackPressed -= ToggleGameState;
         GameEventSystem.OnGameStateChanged -= HandleGameStateChanged;
     }
 
@@ -38,15 +47,17 @@ public class GameManager : MonoBehaviour
     {
         if (state == GameState.Playing &&
             _previousState == GameState.MainMenu)
-        {
             StartGameplay();
-        }
+        else if (state == GameState.Paused)
+            GameEventSystem.InvokeTogglePause();
+        else if(state==GameState.Playing 
+                && _previousState==GameState.Paused)
+            GameEventSystem.InvokeToggleUnPause();
         else if (state == GameState.MainMenu &&
                  (_previousState == GameState.Playing ||
                   _previousState == GameState.Paused))
-        {
             StopGameplay();
-        }
+        
 
         _previousState = state;
     }
@@ -60,12 +71,13 @@ public class GameManager : MonoBehaviour
     {
         if (_simulationManager != null)
         {
+            GameEventSystem.InvokeToggleUnPause();
             Destroy(_simulationManager);
             _simulationManager = null;
         }
     }
 
-    public void HandleToggleTime()
+    public void ToggleGameState()
     {
         if (CurrentState == GameState.Playing)
             ChangeState(GameState.Paused);

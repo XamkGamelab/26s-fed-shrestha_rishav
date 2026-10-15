@@ -121,9 +121,11 @@ MonoBehaviour:
   worldCursor: {fileID: 0}
   cameraDistance: 4
   cameraAngle: 65
+  cameraRotation: 0
+  _followSpeed: 5
   _zoomSpeed: 5
   _minZoom: 5
   _maxZoom: 20
   _rotationSpeed: 90
-  _zoomAction: {fileID: -1149984203749645724, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  _rotateAction: {fileID: -1116001039537114160, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  inputReader: {fileID: 2656869196583471548, guid: ce182205b7b25a4458ee9fead9bfbe06, type: 3}
+  _currentZoom: 0

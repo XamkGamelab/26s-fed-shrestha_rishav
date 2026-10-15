@@ -50,5 +50,7 @@ MonoBehaviour:
   cancelAction: {fileID: 7727032971491509709, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   rotateObjectAction: {fileID: 7538150759455477300, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   toggleTimeAction: {fileID: 8500717661565847639, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  toggleBuildModeAction: {fileID: -876610451328896060, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  pauseAction: {fileID: 5980759900389217396, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   _zoomAction: {fileID: -1149984203749645724, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   _rotateAction: {fileID: -1116001039537114160, guid: 052faaac586de48259a63d0c4782560b, type: 3}

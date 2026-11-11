@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class InputReader: MonoBehaviour
     {
-        [Header("Input Actions")]
+        [Header("Cursor")]
         [SerializeField] private InputActionReference moveAction;
         [SerializeField] private InputActionReference zoomAction;
         [SerializeField] private InputActionReference selectAction;
@@ -15,6 +15,8 @@ public class InputReader: MonoBehaviour
         [SerializeField] private InputActionReference toggleTimeAction;
         [SerializeField] private InputActionReference toggleBuildModeAction;
         [SerializeField] private InputActionReference pauseAction;
+        [SerializeField] private InputActionReference freelookAction;
+        [SerializeField] private InputActionReference rotationMouseAction;
         
         [Header("Camera")]
         [SerializeField] private InputActionReference _zoomAction;
@@ -25,22 +27,26 @@ public class InputReader: MonoBehaviour
         public class GameInputState
         {
             public Vector2 MoveDirection;
-            public float ZoomAxis;
+            public float ZoomValue;
+            public float Rotation;
+            public Vector2 RotationMouse;
             public Vector2 CursorPosition;
             public bool IsBuildModeActive;
+            public bool IsFreeLookActive;
             public bool HasPressedSelect=false;
         }
         
-        [Header("World Cursor Values")]
-        public Vector2 moveValue => moveAction.action.ReadValue<Vector2>();
-  
-        
-        [Header("Camera Values")]
-        public float zoomValue => zoomAction.action.ReadValue<float>();
-        public float rotateValue => _rotateAction.action.ReadValue<float>();
 
         void Update()
         {
+            InputState.MoveDirection = moveAction.action.ReadValue<Vector2>();
+            InputState.ZoomValue = zoomAction.action.ReadValue<float>();
+            
+            InputState.IsFreeLookActive = freelookAction.action.ReadValue<float>() > 0.5f;
+
+            if(InputState.IsFreeLookActive) InputState.RotationMouse = rotationMouseAction.action.ReadValue<Vector2>();
+            else InputState.Rotation = _rotateAction.action.ReadValue<float>();
+            
             if (gamePaused) return;
             HandleRawInput();
         }
@@ -52,6 +58,7 @@ public class InputReader: MonoBehaviour
             moveAction.action.Enable();
             selectAction.action.Enable();
             cancelAction.action.Enable();
+            freelookAction.action.Enable();
      
             toggleTimeAction.action.Enable();
             _zoomAction.action.Enable();
@@ -74,6 +81,7 @@ public class InputReader: MonoBehaviour
             toggleTimeAction.action.performed -= OnToggleTime;
             toggleBuildModeAction.action.performed -= OnToggleBuildMode;
             
+            freelookAction.action.Disable();
             _zoomAction.action.Disable();
             _rotateAction.action.Disable();
             moveAction.action.Disable();
@@ -143,6 +151,7 @@ public class InputReader: MonoBehaviour
                 cancelAction.action.Enable();
                 toggleTimeAction.action.Enable();
                 toggleBuildModeAction.action.Enable();
+                freelookAction.action.Enable();
                 _zoomAction.action.Enable();
                 _rotateAction.action.Enable();
             }

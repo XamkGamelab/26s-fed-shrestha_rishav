@@ -13,13 +13,15 @@ MonoBehaviour:
   m_Name: Hut
   m_EditorClassIdentifier: Assembly-CSharp::Fed.Game.Building.Data.BuildingData
   type: 10
-  goldCost: 8
+  goldCost: 0
   size: {x: 1, y: 1}
   prefab: {fileID: 757673844757036401, guid: 60a9f5ea86d191c4a8569ce5eb223b47, type: 3}
-  ghost: {fileID: 6306770333113531422, guid: 44a5a86d289b2b94c8cba695717eb979, type: 3}
-  buildingResourceCost:
-  - Cost: 5
-    ResourceType: 3
+  ghost: {fileID: 757673844757036401, guid: 1655dbc443f309247ba07d4a2806afc2, type: 3}
+  ConstructionTime: 10
+  completionSmoke: {fileID: 7221346991163741924, guid: f6802e832cb168e47ae442d7e6a05c7f, type: 3}
+  UnderConstructionSmoke: {fileID: 4720751017146075591, guid: 9992ef49d5a62324fb1d0a534791b843, type: 3}
+  buildingResourceCost: []
   resourceProduction:
   - amountPerSecond: 0.66
+    maxAmount: 0
     ResourceType: 2

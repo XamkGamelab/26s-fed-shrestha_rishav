@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class PlayerResource 
 {
-    public int goldCoins;
+    public int coinAmount;
     public int[][] ResourceCount;
     public void Initialize()
     {
-        goldCoins= 100;
+        coinAmount= 100;
         ResourceCount = new int[Enum.GetNames(typeof(ResourceType)).Length][];
 
         for (int i = 0; i < ResourceCount.Length; i++)
@@ -18,8 +18,6 @@ public class PlayerResource
         AddResource(ResourceType.Wood,5);
         AddResource(ResourceType.Stone,100);
     }
-
-
     public void InvokeResourceChanged()
     {
         GameEventSystem.InvokeResourceChanged(ResourceCount[(int)ResourceType.Iron][0],
@@ -39,26 +37,20 @@ public class PlayerResource
       ResourceCount[(int)type][0]-=amount;
       InvokeResourceChanged();
     }
-    public int GetResourceCount(ResourceType type)
-    {
-        return ResourceCount[(int)type][0];
-    }
     public void AddCoins(int amount)
     {
-        goldCoins+=amount;
-        GameEventSystem.InvokeGoldChanged(goldCoins);
+        coinAmount+=amount;
+        GameEventSystem.InvokeGoldChanged(coinAmount);
     }
     public void SpendCoins(int amount)
     {
-        if (goldCoins < amount) return;
-        goldCoins-=amount;
-        GameEventSystem.InvokeGoldChanged(goldCoins);
+        if (coinAmount < amount) return;
+        coinAmount-=amount;
+        GameEventSystem.InvokeGoldChanged(coinAmount);
     }
-
-    public int getGoldCoins()
-    {
-        return goldCoins;
-    }
+    public int GetResourceCount(ResourceType type)=> ResourceCount[(int)type][0];
+    public int GetCoinCount() => coinAmount;
+    
 }
 
 

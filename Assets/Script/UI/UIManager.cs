@@ -15,6 +15,11 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI goldText;
     [SerializeField]
     public UIPanelData[] panels;
+    
+    private void Awake()
+    {
+        panels[(int)UIPanel.CanvasMainMenu].canvas.SetActive(true);
+    }
 
     private void OnEnable()
     {

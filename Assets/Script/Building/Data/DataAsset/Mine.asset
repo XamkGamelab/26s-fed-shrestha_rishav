@@ -14,14 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Fed.Game.Building.Data.BuildingData
   type: 30
   goldCost: 5
-  size: {x: 1, y: 1}
+  size: {x: 1, y: 2}
   prefab: {fileID: 2030872695447312521, guid: 6e8e829e677fc3f4e9f362efe81895fc, type: 3}
   ghost: {fileID: 6499982516090338717, guid: be9c807c47b3bc446ae5c5b55655ba53, type: 3}
+  ConstructionTime: 20
+  completionSmoke: {fileID: 7221346991163741924, guid: f6802e832cb168e47ae442d7e6a05c7f, type: 3}
+  UnderConstructionSmoke: {fileID: 4720751017146075591, guid: 9992ef49d5a62324fb1d0a534791b843, type: 3}
   buildingResourceCost:
   - Cost: 50
     ResourceType: 0
   resourceProduction:
   - amountPerSecond: 0.1
+    maxAmount: 0
     ResourceType: 0
   - amountPerSecond: 0.22
+    maxAmount: 0
     ResourceType: 3

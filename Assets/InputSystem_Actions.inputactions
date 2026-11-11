@@ -85,6 +85,26 @@
                     "interactions": "",
                     "initialStateCheck": false,
                     "priority": 0
+                },
+                {
+                    "name": "RotateMouse",
+                    "type": "Value",
+                    "id": "4c4f72d9-8e17-491c-b9a5-1b559ad983b4",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true,
+                    "priority": 0
+                },
+                {
+                    "name": "Freelook",
+                    "type": "Button",
+                    "id": "7c9ab3a3-5ae5-43f7-bff2-a9378c20134f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
                 }
             ],
             "bindings": [
@@ -338,6 +358,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "BuildMode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5ceef463-b3ff-47b1-87d1-af958f1f7296",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "RotateMouse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1485d085-d298-4ff8-a1d9-8339825784d7",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Freelook",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

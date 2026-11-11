@@ -78,7 +78,7 @@ public class CameraController : MonoBehaviour
     private void CalculateZoomValue()
     {
         _currentZoom = Mathf.Clamp(
-            _currentZoom - inputReader.zoomValue
+            _currentZoom - inputReader.InputState.ZoomValue
             * _zoomSpeed * Time.deltaTime,
             _minZoom,
             _maxZoom
@@ -87,8 +87,20 @@ public class CameraController : MonoBehaviour
 
     private void CalculateRotation()
     {
-        float input = inputReader.rotateValue;
-        cameraRotation += input * _rotationSpeed * Time.deltaTime;
+       
+        if (inputReader.InputState.IsFreeLookActive)
+        {
+            Vector2 inputxy = inputReader.InputState.RotationMouse;
+            cameraRotation += inputxy.x * _rotationSpeed * Time.deltaTime;
+            
+            cameraAngle += inputxy.y * _rotationSpeed * Time.deltaTime;
+            cameraAngle = Mathf.Clamp(cameraAngle, 35, 75);
+        }
+        else
+        {
+            float input = inputReader.InputState.Rotation; 
+            cameraRotation += input * _rotationSpeed * Time.deltaTime;
+        }
         
     }
 
@@ -102,8 +114,5 @@ public class CameraController : MonoBehaviour
         GameEventSystem.TogglePauseGame-=HandlePause;
     }
 
-    public void HandlePause(bool isPaused)
-    {
-        this.isPaused=isPaused;
-    }
+    public void HandlePause(bool isPaused)=>this.isPaused=isPaused;
 }

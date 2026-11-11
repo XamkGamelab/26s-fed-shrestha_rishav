@@ -171,6 +171,26 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""initialStateCheck"": false,
                     ""priority"": 0
+                },
+                {
+                    ""name"": ""RotateMouse"",
+                    ""type"": ""Value"",
+                    ""id"": ""4c4f72d9-8e17-491c-b9a5-1b559ad983b4"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true,
+                    ""priority"": 0
+                },
+                {
+                    ""name"": ""Freelook"",
+                    ""type"": ""Button"",
+                    ""id"": ""7c9ab3a3-5ae5-43f7-bff2-a9378c20134f"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
                 }
             ],
             ""bindings"": [
@@ -424,6 +444,28 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""BuildMode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5ceef463-b3ff-47b1-87d1-af958f1f7296"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""RotateMouse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1485d085-d298-4ff8-a1d9-8339825784d7"",
+                    ""path"": ""<Mouse>/middleButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Freelook"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1029,6 +1071,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Game_Rotate = m_Game.FindAction("Rotate", throwIfNotFound: true);
         m_Game_Pause = m_Game.FindAction("Pause", throwIfNotFound: true);
         m_Game_BuildMode = m_Game.FindAction("BuildMode", throwIfNotFound: true);
+        m_Game_RotateMouse = m_Game.FindAction("RotateMouse", throwIfNotFound: true);
+        m_Game_Freelook = m_Game.FindAction("Freelook", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1130,6 +1174,8 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Game_Rotate;
     private readonly InputAction m_Game_Pause;
     private readonly InputAction m_Game_BuildMode;
+    private readonly InputAction m_Game_RotateMouse;
+    private readonly InputAction m_Game_Freelook;
     /// <summary>
     /// Provides access to input actions defined in input action map "Game".
     /// </summary>
@@ -1173,6 +1219,14 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Game/BuildMode".
         /// </summary>
         public InputAction @BuildMode => m_Wrapper.m_Game_BuildMode;
+        /// <summary>
+        /// Provides access to the underlying input action "Game/RotateMouse".
+        /// </summary>
+        public InputAction @RotateMouse => m_Wrapper.m_Game_RotateMouse;
+        /// <summary>
+        /// Provides access to the underlying input action "Game/Freelook".
+        /// </summary>
+        public InputAction @Freelook => m_Wrapper.m_Game_Freelook;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1223,6 +1277,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @BuildMode.started += instance.OnBuildMode;
             @BuildMode.performed += instance.OnBuildMode;
             @BuildMode.canceled += instance.OnBuildMode;
+            @RotateMouse.started += instance.OnRotateMouse;
+            @RotateMouse.performed += instance.OnRotateMouse;
+            @RotateMouse.canceled += instance.OnRotateMouse;
+            @Freelook.started += instance.OnFreelook;
+            @Freelook.performed += instance.OnFreelook;
+            @Freelook.canceled += instance.OnFreelook;
         }
 
         /// <summary>
@@ -1258,6 +1318,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @BuildMode.started -= instance.OnBuildMode;
             @BuildMode.performed -= instance.OnBuildMode;
             @BuildMode.canceled -= instance.OnBuildMode;
+            @RotateMouse.started -= instance.OnRotateMouse;
+            @RotateMouse.performed -= instance.OnRotateMouse;
+            @RotateMouse.canceled -= instance.OnRotateMouse;
+            @Freelook.started -= instance.OnFreelook;
+            @Freelook.performed -= instance.OnFreelook;
+            @Freelook.canceled -= instance.OnFreelook;
         }
 
         /// <summary>
@@ -1614,6 +1680,20 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnBuildMode(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "RotateMouse" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRotateMouse(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Freelook" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnFreelook(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

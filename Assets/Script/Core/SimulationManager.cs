@@ -20,6 +20,11 @@
             [SerializeField] private BuildingConfig _buildingConfig;
             [SerializeField] private LayerMask _buildableAreaLayer;
             public BuildingType SelectedBuildingType;
+            
+            
+            [Header("Environment")]
+            [SerializeField]
+            private DayNightCycle _dayNightCycle;
 
             private GameObject _inputReader;
             private WorldCursor _worldCursor;
@@ -48,6 +53,9 @@
                 CreateInputReader();
                 CreateWorldCursor();
                 CreateCamera();
+                InitializeEnvironment();
+                Shader.SetGlobalFloat("_Buildmode", 0f);
+                
             }
 
             private void OnEnable()
@@ -59,10 +67,7 @@
                 GameEventSystem.TogglePauseGame-=HandleGamePause;;
             }
 
-            private void HandleGamePause(bool isPaused)
-            {
-                 gamePaused = isPaused;
-            }
+           
 
             private void Update()
             {
@@ -72,30 +77,53 @@
 
                 if (inputReader.InputState.IsBuildModeActive)
                 {
+                   
                     HandleBuildMode(inputReader.InputState.CursorPosition);
+                  
                 }
-                
+               
                 else if (_ghostBuilding != null)
                 {
+                    Shader.SetGlobalVector(
+                        "_SelectedCellPosition",
+                        new Vector3(
+                            1000,
+                            1000,
+                            0
+                        ));
                     Destroy(_ghostBuilding);
                     _ghostBuilding = null;
                 } 
                 UpdateResourceProduction();
+                UpdateBuildingConstruction();
+                UpdateDayNightCycle();
             }
-        
 
+
+            private void UpdateDayNightCycle()
+            {
+                _dayNightCycle?.Tick(Time.deltaTime);
+            }
+            private void UpdateBuildingConstruction()
+            {
+                foreach (global::Building building in _buildings)
+                {
+                    if (building == null || building.IsBuilt)
+                        continue;
+
+                    building.UpdateConstruction(Time.deltaTime);
+                }
+            }
          
             private void UpdateResourceProduction()
             {
                 foreach (global::Building building in _buildings)
                 {
-                    if (building == null || building.data == null)
+                    if (building == null || building.data == null || !building.IsBuilt)
                         continue;
 
-                    Debug.Log(building.data.resourceProduction.Count);
                     foreach (var production in building.data.resourceProduction)
                     {
-                      
                         ResourceType type = production.ResourceType;
 
                         if (!_productionAccumulator.ContainsKey(type))
@@ -103,11 +131,6 @@
 
                         _productionAccumulator[type] +=
                             production.amountPerSecond * Time.deltaTime;
-
-                        Debug.Log(
-                            $"{building.name} produces {production.amountPerSecond}/sec " +
-                            $"of {type}. Accumulated: {_productionAccumulator[type]}"
-                        );
                     }
                 }
 
@@ -117,8 +140,6 @@
 
                     if (amountToAdd > 0)
                     {
-                        Debug.Log($"Adding {amountToAdd} {type} to player resources.");
-
                         _playerResource.AddResource(type, amountToAdd);
                         _productionAccumulator[type] -= amountToAdd;
                     }
@@ -130,6 +151,23 @@
                     _inputReaderPrefab,
                     transform
                 );
+            }
+            private void InitializeEnvironment()
+            {
+                if (_dayNightCycle == null)
+                    return;
+
+                if (RenderSettings.skybox != null)
+                {
+                    _dayNightCycle.skyboxMaterial =
+                        new Material(RenderSettings.skybox);
+
+                    RenderSettings.skybox = _dayNightCycle.skyboxMaterial;
+                }
+
+                _dayNightCycle.sun = RenderSettings.sun;
+
+                _dayNightCycle.Initialize();
             }
 
             private void CreateWorldCursor()
@@ -181,86 +219,113 @@
                     );
                     return;
                 }
-
-                if (_worldCursor != null)
-                {
-                    _cameraController.worldCursor =
-                        _worldCursor.transform;
-                }
+                
+                InputReader inputReader =
+                    _inputReader.GetComponent<InputReader>();
+                
+                if(_worldCursor != null) _cameraController.Initialize(inputReader,_worldCursor.transform);
             }
 
             private void HandleBuildMode(Vector2 cursorPosition)
             {
                 InputReader inputReader = _inputReader.GetComponent<InputReader>();
+                
                 if (_buildingConfig == null ||
                     _buildingConfig.BuildingData == null ||
-                    _buildingConfig.BuildingData.Count == 0)
-                {
-                  
-                    return;
-                    
-                }
-     
+                    _buildingConfig.BuildingData.Count == 0) return;
+                
                 var buildingData = _buildingConfig.BuildingData[(int)SelectedBuildingType];
 
                 if (_ghostBuilding == null || _previousBuildingType != SelectedBuildingType)
                 {
-                    if (_ghostBuilding != null)
-                    {
+                    if (_ghostBuilding != null) 
                         Destroy(_ghostBuilding);
-                    }
-
+                    
                     _ghostBuilding = Instantiate(buildingData.Ghost);
                     _previousBuildingType = SelectedBuildingType;
                 }
-
-                if (buildingData.Ghost == null)
-                {
-                    Debug.LogError("No Ghost");
-                    return;
-                }
-
-                if (_ghostBuilding == null)
-                {
-                    _ghostBuilding = Instantiate(buildingData.Ghost);
-                   
-                }
-
+                if (buildingData.Ghost == null) return;
+                
+                if (_ghostBuilding == null) _ghostBuilding = Instantiate(buildingData.Ghost);
+                
                 Camera mainCamera = Camera.main;
-
-                if (mainCamera == null)
+                
+                if (mainCamera == null) return;
+                if(inputReader.InputState.IsFreeLookActive)
                     return;
-
                 Ray ray = mainCamera.ScreenPointToRay(
                     new Vector3(cursorPosition.x, cursorPosition.y, 0f)
                 );
-
+              
                 if (!Physics.Raycast(
                         ray,
                         out RaycastHit hit,
                         100f,
                         _buildableAreaLayer))
                 {
+                    Shader.SetGlobalVector(
+                        "_SelectedCellPosition",
+                        new Vector3(
+                            1000,
+                            1000,
+                            0
+                        ));
+                    _ghostBuilding.SetActive(false);
+                    
+                    return;
+                }
+                Vector3 selectedCellPosition =
+                    _buildingGrid.GetCellPosition(hit.point);
+                bool isOutOfBounds = !IsInsideBuildableArea(
+                    selectedCellPosition,
+                    buildingData.Size,
+                    hit.point.y
+                );
+                if (isOutOfBounds)
+                {
+                    Shader.SetGlobalVector(
+                        "_SelectedCellPosition",
+                        new Vector3(
+                            1000,
+                            1000,
+                            0
+                        ));
                     _ghostBuilding.SetActive(false);
                     return;
                 }
-
                 _ghostBuilding.SetActive(true);
-
+            
+                
+                Shader.SetGlobalVector(
+                    "_SelectedCellPosition",
+                    new Vector3(
+                        selectedCellPosition.x,
+                        selectedCellPosition.z,
+                        0
+                    )
+                );
+                Shader.SetGlobalVector("_SelectedCellSize",
+                    new Vector3(buildingData.Size.x
+                        ,buildingData.Size.y
+                        ,0));
                 _ghostBuilding.transform.position =
-                    _buildingGrid.GetCellPosition(hit.point);
-
+                    _buildingGrid.GetCellPosition(hit.point)+ new Vector3((float)buildingData.Size.x/2,buildingData.Prefab.transform.localScale.y/2,(float)buildingData.Size.y/2);
+              
                 bool isOccupied =
                     _buildingGrid.IsOccupied(hit.point, buildingData);
-
+                
                 if (isOccupied)
                 {
-                    // TODO: Show the ghost in red.
+                    _ghostBuilding.GetComponent<Renderer>().material.color = 
+                        new Color(1, 0.1f, 0.1f,89f/255f);
+                    
                 }
                 else
                 {
-                    // TODO: Show the ghost in green.
+                    _ghostBuilding.GetComponent<Renderer>().material.color = 
+                        new Color(197f/255f, 157f/255f, 0,89f/255f);;
                 }
+
                 bool hasEnoughResources = true;
                 foreach(var buildingResourceCost in buildingData.buildingResourceCost)
                 {
@@ -271,7 +336,7 @@
                         break;
                     }
                 }
-                if (inputReader.InputState.HasPressedSelect && !isOccupied && _playerResource.goldCoins >= buildingData.GoldCost&&hasEnoughResources)
+                if (inputReader.InputState.HasPressedSelect && !isOccupied && _playerResource.coinAmount >= buildingData.GoldCost&&hasEnoughResources)
                 {
                     _playerResource.SpendCoins(buildingData.GoldCost);
                     foreach(var buildingResourceCost in buildingData.buildingResourceCost)
@@ -285,14 +350,15 @@
                     );
                     if (building != null)
                     {
+                        Debug.Log("Building placed");
                         building.transform.SetParent(transform);
                         _buildings.Add(building.GetComponent<global::Building>());
                     }
-                    
-                    
-                    inputReader.InputState.HasPressedSelect = false;
                 }
+                inputReader.InputState.HasPressedSelect = false;
             }
+            private void HandleGamePause(bool isPaused)=> gamePaused = isPaused;
+            
 
             private void OnDestroy()
             {
@@ -301,5 +367,44 @@
                     Destroy(_ghostBuilding);
                 }
             }
+            
+            private bool IsInsideBuildableArea(
+                Vector3 cellPosition,
+                Vector2Int buildingSize,
+                float groundHeight)
+            {
+                for (int x = 0; x < buildingSize.x; x++)
+                {
+                    for (int y = 0; y < buildingSize.y; y++)
+                    {
+                        for (int cornerX = 0; cornerX <= 1; cornerX++)
+                        {
+                            for (int cornerY = 0; cornerY <= 1; cornerY++)
+                            {
+                                Vector3 samplePosition = new Vector3(
+                                    cellPosition.x + x + (cornerX == 0 ? 0.01f : 1f - 0.01f),
+                                    groundHeight + 100f,
+                                    cellPosition.z + y + (cornerY == 0 ? 0.01f : 1f - 0.01f)
+                                );
+
+                                if (!Physics.Raycast(
+                                        samplePosition,
+                                        Vector3.down,
+                                        200f,
+                                        _buildableAreaLayer))
+                                {
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                return true;
+            }
         }
-    }
+        }
+        
+    
+    
+    

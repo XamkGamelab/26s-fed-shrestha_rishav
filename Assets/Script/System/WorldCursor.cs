@@ -31,6 +31,7 @@ public class WorldCursor : MonoBehaviour
         private void Update()
         {
             HandleMove();
+            HandleRotate();
             var mouse = Mouse.current;
             if (mouse == null)
             {
@@ -43,13 +44,25 @@ public class WorldCursor : MonoBehaviour
                 Color.red);
         }
         
+        
         private void HandleMove()
         {
-            Vector2 input = inputReader.moveValue;
+            Vector2 input = inputReader.InputState.MoveDirection;
             Vector3 movement = new Vector3(input.x, 0f, input.y);
+            movement = transform.TransformDirection(movement);
             transform.position += movement * moveSpeed * Time.deltaTime;
+            transform.position = new Vector3(
+                Mathf.Clamp(transform.position.x, -10f, 10f),
+                transform.position.y,
+                Mathf.Clamp(transform.position.z, -10f, 10f)
+            );
         }
-        
+
+        private void HandleRotate()
+        {
+            float input = inputReader.InputState.IsFreeLookActive ? inputReader.InputState.RotationMouse.x : inputReader.InputState.Rotation;
+            transform.Rotate(Vector3.up, input * rotationSpeed * Time.deltaTime);
+        }
 
         public void Initialize(InputReader inputReader)
         {

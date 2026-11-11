@@ -7,17 +7,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Simulation")]
     [SerializeField] private GameObject _simulationManagerPrefab;
-
     private GameObject _simulationManager;
     private GameState _previousState;
-
-    private void Update()
-    {
-        if (CurrentState == GameState.Paused)
-        {
-            
-        }
-    }
 
     private void Awake()
     {
@@ -58,15 +49,11 @@ public class GameManager : MonoBehaviour
                   _previousState == GameState.Paused))
             StopGameplay();
         
-
         _previousState = state;
     }
 
-    private void StartGameplay()
-    {
-        _simulationManager = Instantiate(_simulationManagerPrefab);
-    }
-
+    private void StartGameplay()=> _simulationManager = Instantiate(_simulationManagerPrefab);
+    
     private void StopGameplay()
     {
         if (_simulationManager != null)
@@ -76,7 +63,6 @@ public class GameManager : MonoBehaviour
             _simulationManager = null;
         }
     }
-
     public void ToggleGameState()
     {
         if (CurrentState == GameState.Playing)
@@ -89,8 +75,6 @@ public class GameManager : MonoBehaviour
     public void ChangetoPlaying() => ChangeState(GameState.Playing);
     public void ChangetoPaused() => ChangeState(GameState.Paused);
 }
-
-
 public enum GameState
 {
     Playing,

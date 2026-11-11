@@ -13,13 +13,15 @@ MonoBehaviour:
   m_Name: TownHall
   m_EditorClassIdentifier: Assembly-CSharp::Fed.Game.Building.Data.BuildingData
   type: 20
-  goldCost: 50
-  size: {x: 1, y: 1}
+  goldCost: 0
+  size: {x: 3, y: 3}
   prefab: {fileID: 5878298269124629742, guid: 698f5e9e6c66ffd4ca6e5464cc6b12c0, type: 3}
   ghost: {fileID: 3775095318973482638, guid: fe91282a4ff593246bb725052f54343d, type: 3}
-  buildingResourceCost:
-  - Cost: 30
-    ResourceType: 1
+  ConstructionTime: 40
+  completionSmoke: {fileID: 7221346991163741924, guid: f6802e832cb168e47ae442d7e6a05c7f, type: 3}
+  UnderConstructionSmoke: {fileID: 4720751017146075591, guid: 9992ef49d5a62324fb1d0a534791b843, type: 3}
+  buildingResourceCost: []
   resourceProduction:
   - amountPerSecond: 0.5
+    maxAmount: 0
     ResourceType: 2

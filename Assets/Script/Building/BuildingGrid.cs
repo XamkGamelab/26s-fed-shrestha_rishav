@@ -1,4 +1,5 @@
  using System.Collections.Generic;
+ using System.Linq;
  using Fed.Game.Building.Data;
  using JetBrains.Annotations;
  using Unity.VectorGraphics;
@@ -8,20 +9,19 @@
  public class BuildingGrid
     {
         private readonly Dictionary<Vector2Int, Building> buildingsByCell = new();
-        [CanBeNull]
-        public List<Building> buildings= new List<Building>(); 
+        public List<Building> buildings => buildingsByCell.Values.ToList();
 
         public Vector3 GetCellPosition(Vector3 worldPos)
             => new (
                 Mathf.FloorToInt(worldPos.x),
-                0,
+                worldPos.y,
                 Mathf.FloorToInt(worldPos.z));
 
         public bool IsOccupied(Vector3 worldPos, BuildingData buildingData)
         {
-            Vector3Int snappedWorldPos = new(
+            Vector3 snappedWorldPos = new(
                 Mathf.FloorToInt(worldPos.x),
-                0,
+                worldPos.y,
                 Mathf.FloorToInt(worldPos.z));
 
             var size = buildingData.Size;
@@ -30,8 +30,8 @@
                 for (int y = 0; y < size.y; y++)
                 {
                     var placement = new Vector2Int(
-                        snappedWorldPos.x + x,
-                        snappedWorldPos.z + y
+                        (int)snappedWorldPos.x + x,
+                        (int)snappedWorldPos.z + y
                         );
 
                     if (buildingsByCell.ContainsKey(placement))
@@ -43,7 +43,12 @@
 
             return false;
         }
-        
+
+        public void getbuildingscordinates()
+        {
+            List<Vector2Int> cells = buildingsByCell.Keys.ToList();
+           
+        }
 
         public GameObject Occupy(Vector3 worldPos, BuildingData buildingData, Scene scene)
         {
@@ -51,18 +56,24 @@
             {
                 return null;
             }
-
-            Vector3Int snappedWorldPos = new(
+            
+            Vector3 snappedWorldPos = new(
                 Mathf.FloorToInt(worldPos.x),
-                0,
-                Mathf.FloorToInt(worldPos.z));
+                worldPos.y,
+                Mathf.FloorToInt(worldPos.z)
+                );
+            Vector3 worldPlacePosition =  
+                snappedWorldPos + 
+                new Vector3((float)buildingData.Size.x/2, 
+                buildingData.Prefab.transform.localScale.y/2,
+                (float)buildingData.Size.y/2);
 
             var buildingObj = Object.Instantiate(buildingData.Prefab,
                 new InstantiateParameters() { scene = scene });
-            buildingObj.transform.position = snappedWorldPos;
+            buildingObj.transform.position = worldPlacePosition;
             buildingObj.AddComponent<Building>();
             var building = buildingObj.GetComponent<Building>();
-            building.data=buildingData;
+            building.Initialize(buildingData);
 
             var size = buildingData.Size;
             for (int x = 0; x < size.x; x++)
@@ -70,8 +81,8 @@
                 for (int y = 0; y < size.y; y++)
                 {
                     var placement = new Vector2Int(
-                        snappedWorldPos.x + x,
-                        snappedWorldPos.z + y);
+                        (int)snappedWorldPos.x + x,
+                        (int)snappedWorldPos.z + y);
                     buildingsByCell[placement] = building;
                 }
             }

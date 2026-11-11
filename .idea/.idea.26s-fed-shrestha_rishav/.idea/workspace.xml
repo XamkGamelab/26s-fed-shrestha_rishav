@@ -6,113 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="4fef4f2f-945b-4601-9d59-b11379484d4b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.26s-fed-shrestha_rishav/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.26s-fed-shrestha_rishav/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Audio/Master.mixer" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Audio/Master.mixer" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Controls.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Controls.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Material/Plane.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Material/Plane/Grid.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Material/Plane/Grid.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Material/Plane/Plane.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Material/Plane/Plane.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Material/SkyBox.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Material/SkyBox.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prehabs/Building/Cave/Cave.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prehabs/Building/Cave/Cave.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prehabs/Building/Completion Particle.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prehabs/Building/Completion Particle.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prehabs/Building/ConstrctionSmoke.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prehabs/Building/ConstrctionSmoke.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prehabs/Building/Hut/Hut.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prehabs/Building/Hut/Hut.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prehabs/Building/TownHall/TownHall.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prehabs/Building/TownHall/TownHall.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prehabs/SimulationManager.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prehabs/SimulationManager.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Boxed Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Boxed Scene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/Building/Building.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Building/Building.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/Building/Data/BuildingData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Building/Data/BuildingData.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/Core/GameEventSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Core/GameEventSystem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/Core/SimulationManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Core/SimulationManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/Cycle/DayNightCycle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Cycle/DayNightCycle.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/System/AudioManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/System/Audio/AudioManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/System/AudioManager.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/System/Audio/AudioManager.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/System/GridRenderer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/System/GridRenderer.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shader/2d Grid.shadergraph" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Shader/2d Grid.shadergraph.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/circle_01.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/circle_01.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/circle_02.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/circle_02.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/circle_03.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/circle_03.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/circle_04.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/circle_04.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/circle_05.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/circle_05.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/dirt_01.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/dirt_01.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/dirt_02.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/dirt_02.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/dirt_03.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/dirt_03.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/fire_01.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/fire_01.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/fire_02.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/fire_02.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/flame_01.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/flame_01.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/flame_02.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/flame_02.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/flame_03.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/flame_03.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/flame_04.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/flame_04.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/flame_05.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/flame_05.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/flame_06.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/flame_06.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/flare_01.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/flare_01.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/light_01.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/light_01.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/light_02.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/light_02.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/light_03.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/light_03.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/magic_01.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/magic_01.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/magic_02.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/magic_02.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/magic_03.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/magic_03.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/magic_04.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/magic_04.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/magic_05.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/magic_05.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/muzzle_01.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/muzzle_01.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/muzzle_02.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/muzzle_02.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/muzzle_03.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/muzzle_03.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/muzzle_04.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/muzzle_04.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/muzzle_05.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/muzzle_05.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/scorch_01.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/scorch_01.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/scorch_02.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/scorch_02.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/scorch_03.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/scorch_03.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/scratch_01.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/scratch_01.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/slash_01.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/slash_01.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/slash_02.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/slash_02.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/slash_03.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/slash_03.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/slash_04.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/slash_04.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/smoke_01.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/smoke_01.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/smoke_02.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/smoke_02.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/smoke_03.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/smoke_03.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/smoke_04.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/smoke_04.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/smoke_05.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/smoke_05.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/smoke_06.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/smoke_06.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/smoke_07.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/smoke_07.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/smoke_08.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/smoke_08.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/smoke_09.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/smoke_09.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/smoke_10.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/smoke_10.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/spark_01.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/spark_01.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/spark_02.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/spark_02.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/spark_03.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/spark_03.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/spark_04.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/spark_04.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/spark_05.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/spark_05.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/spark_06.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/spark_06.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/spark_07.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/spark_07.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/star_01.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/star_01.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/star_02.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/star_02.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/star_03.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/star_03.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/star_04.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/star_04.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/star_05.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/star_05.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/star_06.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/star_06.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/star_07.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/star_07.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/star_08.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/star_08.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/star_09.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/star_09.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/symbol_01.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/symbol_01.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/symbol_02.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/symbol_02.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/trace_01.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/trace_01.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/trace_02.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/trace_02.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/trace_03.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/trace_03.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/trace_04.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/trace_04.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/trace_05.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/trace_05.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/trace_06.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/trace_06.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/trace_07.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/trace_07.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/twirl_01.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/twirl_01.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/twirl_02.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/twirl_02.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/twirl_03.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/twirl_03.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/window_01.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/window_01.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/window_02.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/window_02.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/VFX/window_03.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/VFX/window_03.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/Core/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Core/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/System/Audio/AudioManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/System/Audio/AudioManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/UI/UIButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/UI/UIButton.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -239,7 +137,7 @@
       <workItem from="1794364285743" duration="4627000" />
       <workItem from="1794397088387" duration="9824000" />
       <workItem from="1794413074246" duration="8383000" />
-      <workItem from="1794432017222" duration="2250000" />
+      <workItem from="1794432017222" duration="5011000" />
     </task>
     <servers />
   </component>

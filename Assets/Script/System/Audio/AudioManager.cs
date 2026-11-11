@@ -88,12 +88,16 @@ public class AudioManager : MonoSingleton<AudioManager>
     {
         GameEventSystem.PlaySound += HandlePlaySound;
         GameEventSystem.PlayMusic += HandlePlayMusic;
+        GameEventSystem.StopMusic += HandleStopMusic;
+        GameEventSystem.OnGameStateChanged += HandleGameStateChanged;
     }
 
     private void OnDisable()
     {
         GameEventSystem.PlaySound -= HandlePlaySound;
         GameEventSystem.PlayMusic -= HandlePlayMusic;
+        GameEventSystem.StopMusic -= HandleStopMusic;
+        GameEventSystem.OnGameStateChanged += HandleGameStateChanged;
     }
     
     
@@ -114,9 +118,43 @@ public class AudioManager : MonoSingleton<AudioManager>
                 break;
         }
     }
+    private void HandleGameStateChanged(GameState state)
+    {
+        if (state == GameState.Paused)
+        {
+            sfxSource.Pause();
+            uiSource.Pause();
+            ambienceSource.Pause();
+        }
+        else if (state == GameState.Playing)
+        {
+            sfxSource.UnPause();
+            uiSource.UnPause();
+            ambienceSource.UnPause();
+        }
+        else if (state == GameState.MainMenu)
+        {
+            sfxSource.Stop();
+            uiSource.Stop();
+            ambienceSource.Stop();
+        }
+    }
     private void HandlePlayMusic(MusicType music, MusicTransition musicTransition=MusicTransition.Crossfade)
     {
         PlayMusic(music, musicTransition);
+    }
+    private void HandleStopMusic()
+    {
+        isFadingMusic = false;
+
+        activeMusicSource.Stop();
+        inactiveMusicSource.Stop();
+
+        activeMusicSource.clip = null;
+        inactiveMusicSource.clip = null;
+
+        activeMusicSource.volume = 1f;
+        inactiveMusicSource.volume = 0f;
     }
     
     public override void Awake()
@@ -261,6 +299,18 @@ public class AudioManager : MonoSingleton<AudioManager>
         float dbVolume = Mathf.Log10(volume) * 20f;
         MasterMixer.SetFloat(parameter, dbVolume);
     }
+    
+    public void SetMasterVolume(float volume)
+        => SetMixerVolume(AudioParameters.MasterVolume, volume);
+
+    public void SetMusicVolume(float volume)
+        => SetMixerVolume(AudioParameters.MusicVolume, volume);
+
+    public void SetSFXVolume(float volume)
+        => SetMixerVolume(AudioParameters.SFXVolume, volume);
+
+    public void SetAmbienceVolume(float volume)
+        => SetMixerVolume(AudioParameters.AmbienceVolume, volume);
 
     private void FinishMusicCrossfade()
     {

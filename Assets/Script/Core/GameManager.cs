@@ -59,8 +59,21 @@ public class GameManager : MonoBehaviour
         if (_simulationManager != null)
         {
             GameEventSystem.InvokeToggleUnPause();
+            GameEventSystem.InvokeStopMusic();
+            ClearAllParticles();
             Destroy(_simulationManager);
             _simulationManager = null;
+            
+        }
+    }
+    private void ClearAllParticles()
+    {
+        ParticleSystem[] particles =
+            FindObjectsByType<ParticleSystem>(FindObjectsSortMode.None);
+
+        foreach (ParticleSystem particle in particles)
+        {
+            Destroy(particle.gameObject);
         }
     }
     public void ToggleGameState()

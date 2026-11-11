@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(UIButton))]
+[RequireComponent(typeof(Button))]
 public class UIButton : MonoBehaviour
 {
     [SerializeField] private UIType soundType = UIType.Button;

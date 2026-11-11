@@ -1000,6 +1000,7 @@ GameObject:
   - component: {fileID: 502635551}
   - component: {fileID: 502635550}
   - component: {fileID: 502635549}
+  - component: {fileID: 502635552}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -1121,6 +1122,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 502635547}
   m_CullTransparentMesh: 1
+--- !u!114 &502635552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502635547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16090a35c067c1f4eb07dbdfbb71418e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButton
+  soundType: 0
+  overrideDefaultSound: 0
 --- !u!1 &521221824
 GameObject:
   m_ObjectHideFlags: 0
@@ -2223,6 +2238,7 @@ GameObject:
   - component: {fileID: 1240738942}
   - component: {fileID: 1240738941}
   - component: {fileID: 1240738940}
+  - component: {fileID: 1240738943}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -2344,6 +2360,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1240738938}
   m_CullTransparentMesh: 1
+--- !u!114 &1240738943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240738938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16090a35c067c1f4eb07dbdfbb71418e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButton
+  soundType: 0
+  overrideDefaultSound: 0
 --- !u!1 &1387333418
 GameObject:
   m_ObjectHideFlags: 0
@@ -2523,7 +2553,9 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 7e5fd3537ab278643a5e66c2a676c2f3, type: 3}
   - Type: 1
     clip: {fileID: 8300000, guid: 8cf383a7bcdfc674e970d1b8eb46f015, type: 3}
-  uiIDs: []
+  uiIDs:
+  - Type: 0
+    clip: {fileID: 8300000, guid: e031d750d6991dd41be4156add42ea12, type: 3}
   ambienceIDs:
   - Type: 0
     clip: {fileID: 8300000, guid: d49cb7be7c8b8bc40bcbd59660906a53, type: 3}
@@ -2732,6 +2764,7 @@ GameObject:
   - component: {fileID: 1643865532}
   - component: {fileID: 1643865531}
   - component: {fileID: 1643865530}
+  - component: {fileID: 1643865533}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -2853,6 +2886,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1643865528}
   m_CullTransparentMesh: 1
+--- !u!114 &1643865533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1643865528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16090a35c067c1f4eb07dbdfbb71418e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButton
+  soundType: 0
+  overrideDefaultSound: 0
 --- !u!1 &1786173634
 GameObject:
   m_ObjectHideFlags: 0
@@ -3131,7 +3178,7 @@ GameObject:
   - component: {fileID: 2085532782}
   - component: {fileID: 2085532781}
   m_Layer: 5
-  m_Name: VisualScripting SceneVariables
+  m_Name: CanvasPause
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3208,6 +3255,7 @@ GameObject:
   - component: {fileID: 2105926895}
   - component: {fileID: 2105926894}
   - component: {fileID: 2105926893}
+  - component: {fileID: 2105926896}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -3329,6 +3377,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2105926891}
   m_CullTransparentMesh: 1
+--- !u!114 &2105926896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105926891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16090a35c067c1f4eb07dbdfbb71418e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIButton
+  soundType: 0
+  overrideDefaultSound: 0
 --- !u!1 &2107400362
 GameObject:
   m_ObjectHideFlags: 0

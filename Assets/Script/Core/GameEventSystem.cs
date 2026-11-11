@@ -14,6 +14,8 @@ public class GameEventSystem : MonoBehaviour
     
     public static event Action<Enum> PlaySound;
     public static event Action<MusicType,MusicTransition> PlayMusic;
+
+    public static event Action StopMusic ;
     public static event Action Select;
 
 
@@ -47,5 +49,10 @@ public class GameEventSystem : MonoBehaviour
     public static void InvokePlayMusic(MusicType musicType, MusicTransition transition)
     {
         PlayMusic?.Invoke(musicType, transition);
+    }
+
+    public static void InvokeStopMusic()
+    {
+        StopMusic?.Invoke();
     }
 }

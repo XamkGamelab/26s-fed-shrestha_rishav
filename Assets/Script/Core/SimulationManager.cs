@@ -1,5 +1,6 @@
 
     using System;
+    using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
     using Fed.Game.Building;
@@ -41,6 +42,9 @@
             [SerializeField] private RandomTimer ambienceTimer = new();
             [SerializeField] private AmbienceEvents randomAmbienceEvents = new();
             
+            private Dictionary<Building, ParticleSystem> constructionParticles = new();
+            
+            
             bool gamePaused = false;
 
             private void Awake()
@@ -76,11 +80,15 @@
             {
                 GameEventSystem.TogglePauseGame+=HandleGamePause;
                 ambienceTimer.OnTimerElapsed += HandleAmbience;
+                GameEventSystem.StartConstruction += HandleStartConstruction;
+                GameEventSystem.CompleteConstruction += HandleCompleteConstruction;
             }
             private void OnDisable()
             {
                 GameEventSystem.TogglePauseGame-=HandleGamePause;
                 ambienceTimer.OnTimerElapsed -= HandleAmbience;
+                GameEventSystem.StartConstruction -= HandleStartConstruction;
+                GameEventSystem.CompleteConstruction -= HandleCompleteConstruction;
             }
 
            
@@ -116,6 +124,56 @@
                 UpdateBuildingConstruction();
                 UpdateDayNightCycle();
             }
+            
+            private void HandleStartConstruction(Building building)
+            {
+                if (building == null || constructionParticles.ContainsKey(building))
+                    return;
+
+                ParticleSystem prefab = building.data.UnderConstructionSmoke;
+
+                if (prefab == null)
+                    return;
+
+                ParticleSystem particles = Instantiate(
+                    prefab,
+                    building.transform.position,
+                    Quaternion.identity,
+                    transform
+                );
+
+                particles.Play();
+                constructionParticles.Add(building, particles);
+            }
+            private void HandleCompleteConstruction(Building building)
+            {
+                if (building == null)
+                    return;
+
+                if (!constructionParticles.TryGetValue(building, out ParticleSystem constructionSmoke))
+                    return;
+
+                constructionSmoke.Stop();
+                constructionParticles.Remove(building);
+
+                ParticleSystem completionPrefab = building.data.completionSmoke;
+
+                if (completionPrefab != null)
+                {
+                    ParticleSystem completionSmoke = Instantiate(
+                        completionPrefab,
+                        building.transform.position,
+                        Quaternion.identity,
+                        transform
+                    );
+
+                    completionSmoke.Play();
+                    StartCoroutine(DestroyParticlesAfterPlaying(completionSmoke));
+                }
+
+                StartCoroutine(DestroyParticlesAfterPlaying(constructionSmoke));
+            }
+      
 
             private void HandleAmbience()
             {
@@ -450,6 +508,17 @@
                     }
                 }
                 return true;
+            }
+            
+            private IEnumerator DestroyParticlesAfterPlaying(ParticleSystem particles)
+            {
+                yield return new WaitForSeconds(
+                    particles.main.duration +
+                    particles.main.startLifetime.constantMax
+                );
+
+                if (particles != null)
+                    Destroy(particles.gameObject);
             }
         }
     

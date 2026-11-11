@@ -6,11 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="4fef4f2f-945b-4601-9d59-b11379484d4b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.26s-fed-shrestha_rishav/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.26s-fed-shrestha_rishav/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Boxed Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Boxed Scene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prehabs/SimulationManager.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prehabs/SimulationManager.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/Building/Building.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Building/Building.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/Building/Data/BuildingData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Building/Data/BuildingData.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Script/Core/GameEventSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Core/GameEventSystem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/Core/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Core/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/System/Audio/AudioManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/System/Audio/AudioManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Script/UI/UIButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/UI/UIButton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Script/Core/SimulationManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Script/Core/SimulationManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,9 +32,11 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d44b17e136d09081da1e8fd0e8c83fde60e11818b9f2442d7ed8cb733fae895e/System.Collections.Generic.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Building/Building.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Building/BuildingGrid.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/Building/Data/BuildingAmbienceProfile.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Building/Data/DataAsset/TownHall.asset" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Building/Grid/GridRenderer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Environment/AmbienceEvents.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Script/System/ParticleHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/System/RandomTimer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Script/Visual/WaterWave.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@7a4e1a2a8194/InputSystem/Runtime/Actions/InputAction.cs" root0="SKIP_HIGHLIGHTING" />
@@ -137,7 +139,7 @@
       <workItem from="1794364285743" duration="4627000" />
       <workItem from="1794397088387" duration="9824000" />
       <workItem from="1794413074246" duration="8383000" />
-      <workItem from="1794432017222" duration="5011000" />
+      <workItem from="1794432017222" duration="6387000" />
     </task>
     <servers />
   </component>

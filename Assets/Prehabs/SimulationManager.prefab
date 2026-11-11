@@ -131,7 +131,7 @@ MonoBehaviour:
     sunriseHour: 6
     sunsetHour: 19
   ambienceTimer:
-    interval: {x: 1, y: 5}
+    interval: {x: 60, y: 100}
     remainingTime: 0
   randomAmbienceEvents:
     ambienceEvents:

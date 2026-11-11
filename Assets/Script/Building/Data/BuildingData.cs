@@ -42,6 +42,10 @@ namespace Fed.Game.Building.Data
         public Vector2Int Size => size;
         public GameObject Prefab => prefab;
         public GameObject Ghost => ghost;
+        
+        [Header("Ambient Audio")]
+        public bool enableAmbientAudio;
+        public BuildingAmbienceProfile ambientAudioProfile;
 
         private void OnValidate()
         { 

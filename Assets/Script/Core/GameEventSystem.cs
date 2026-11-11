@@ -17,6 +17,11 @@ public class GameEventSystem : MonoBehaviour
 
     public static event Action StopMusic ;
     public static event Action Select;
+    
+    public static event Action<Building> StartConstruction;
+    public static event Action<Building> CompleteConstruction;
+
+
 
 
     public static void InvokeBuildModeToggled(bool isActive)=> OnBuildModeToggled?.Invoke(isActive);
@@ -54,5 +59,15 @@ public class GameEventSystem : MonoBehaviour
     public static void InvokeStopMusic()
     {
         StopMusic?.Invoke();
+    }
+    
+    public static void InvokeStartConstruction(Building building)
+    {
+        StartConstruction?.Invoke(building);
+    }
+
+    public static void InvokeCompleteConstruction(Building building)
+    {
+        CompleteConstruction?.Invoke(building);
     }
 }

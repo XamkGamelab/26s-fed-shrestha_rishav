@@ -26,6 +26,8 @@ public class Building : MonoBehaviour
         targetScale = transform.localScale;
         targetRotation = transform.rotation;
         transform.localScale = Vector3.zero;
+        
+        GameEventSystem.InvokePlaySound(SfxType.BuildingContructionStart);
 
         if (data.completionSmoke != null)
         {
@@ -57,6 +59,7 @@ public class Building : MonoBehaviour
         if (IsBuilt && !wasBuilt)
         {
             transform.rotation = targetRotation;
+            GameEventSystem.InvokePlaySound(SfxType.BuildingConstructionEnd);
 
             if (completionSmoke != null)
             {
@@ -98,7 +101,7 @@ public class Building : MonoBehaviour
         yield return new WaitForSeconds(
             completionSmoke.main.duration + completionSmoke.main.startLifetime.constantMax
         );
-
+       
         Destroy(completionSmoke.gameObject);
         Destroy(UnderConstructionSmoke.gameObject);
         completionSmoke = null;

@@ -29,6 +29,7 @@ namespace Fed.Game.Building.Data
         [SerializeField] private Vector2Int size;
         [SerializeField] private GameObject prefab;
         [SerializeField] private GameObject ghost;
+        private AudioSource AudioSource=>Prefab.gameObject.GetComponentInChildren<AudioSource>();
         
         public float ConstructionTime;
         

@@ -11,6 +11,9 @@ public class GameEventSystem : MonoBehaviour
     public static event Action<int> OnGoldChanged;
     public static event Action OnResetCursor;
     public static event Action ToggleGameTime;
+    
+    public static event Action<Enum> PlaySound;
+    public static event Action<MusicType,MusicTransition> PlayMusic;
     public static event Action Select;
 
 
@@ -24,4 +27,25 @@ public class GameEventSystem : MonoBehaviour
     public static void InvokeGameStateChanged(GameState state)=> OnGameStateChanged?.Invoke(state);
     public static void InvokeTogglePause()=> TogglePauseGame?.Invoke(true);
     public static void InvokeToggleUnPause()=> TogglePauseGame?.Invoke(false);
+
+
+    public static void InvokePlaySound<T>(T type) where T : Enum
+    {
+        if (typeof(T) != typeof(SfxType) &&
+            typeof(T) != typeof(AmbienceType) &&
+            typeof(T) != typeof(MusicType) &&
+            typeof(T) != typeof(UIType))
+        {
+            Debug.LogWarning($"Unsupported sound type: {typeof(T)}");
+            return;
+        }
+
+        PlaySound?.Invoke(type);
+    }
+
+
+    public static void InvokePlayMusic(MusicType musicType, MusicTransition transition)
+    {
+        PlayMusic?.Invoke(musicType, transition);
+    }
 }

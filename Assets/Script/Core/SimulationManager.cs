@@ -6,9 +6,7 @@
     using Fed.Game.Building.Data;
     using UnityEngine;
     using UnityEngine.InputSystem;
-
-    namespace Fed.Game.Simulation
-    {
+    
         public class SimulationManager : MonoBehaviour
         {
             [Header("Gameplay Prefabs")]
@@ -38,6 +36,11 @@
             private PlayerResource _playerResource;
             private Dictionary<ResourceType, float> _productionAccumulator = new();
             
+            
+            private bool previousIsDay;
+            [SerializeField] private RandomTimer ambienceTimer = new();
+            [SerializeField] private AmbienceEvents randomAmbienceEvents = new();
+            
             bool gamePaused = false;
 
             private void Awake()
@@ -54,17 +57,30 @@
                 CreateWorldCursor();
                 CreateCamera();
                 InitializeEnvironment();
+                ambienceTimer.Initialize();
                 Shader.SetGlobalFloat("_Buildmode", 0f);
+                
+            }
+            void Start()
+            {
+                previousIsDay = _dayNightCycle.IsDay;
+                
+                GameEventSystem.InvokePlayMusic(
+                    previousIsDay ? MusicType.Day : MusicType.Night,
+                    MusicTransition.Instant
+                );
                 
             }
 
             private void OnEnable()
             {
                 GameEventSystem.TogglePauseGame+=HandleGamePause;
+                ambienceTimer.OnTimerElapsed += HandleAmbience;
             }
             private void OnDisable()
             {
-                GameEventSystem.TogglePauseGame-=HandleGamePause;;
+                GameEventSystem.TogglePauseGame-=HandleGamePause;
+                ambienceTimer.OnTimerElapsed -= HandleAmbience;
             }
 
            
@@ -94,15 +110,42 @@
                     Destroy(_ghostBuilding);
                     _ghostBuilding = null;
                 } 
+                
+                UpdateAmbience();
                 UpdateResourceProduction();
                 UpdateBuildingConstruction();
                 UpdateDayNightCycle();
             }
 
+            private void HandleAmbience()
+            {
+                randomAmbienceEvents.TriggerRandomAmbience(
+                    _dayNightCycle.IsDay
+                );
+            }
+            private void UpdateAmbience()
+            {
+                ambienceTimer.Tick(Time.deltaTime);
+            }
+
 
             private void UpdateDayNightCycle()
             {
-                _dayNightCycle?.Tick(Time.deltaTime);
+                _dayNightCycle.Tick(Time.deltaTime);
+
+                bool isDay = _dayNightCycle.IsDay;
+
+                if (isDay == previousIsDay)
+                    return;
+
+                previousIsDay = isDay;
+                
+                GameEventSystem.InvokePlayMusic(
+                    previousIsDay ? MusicType.Day : MusicType.Night,
+                    MusicTransition.Crossfade
+                );
+
+                
             }
             private void UpdateBuildingConstruction()
             {
@@ -325,6 +368,8 @@
                     _ghostBuilding.GetComponent<Renderer>().material.color = 
                         new Color(197f/255f, 157f/255f, 0,89f/255f);;
                 }
+                
+                
 
                 bool hasEnoughResources = true;
                 foreach(var buildingResourceCost in buildingData.buildingResourceCost)
@@ -353,7 +398,12 @@
                         Debug.Log("Building placed");
                         building.transform.SetParent(transform);
                         _buildings.Add(building.GetComponent<global::Building>());
+                        GameEventSystem.InvokePlaySound(SfxType.PlacementSuccess);
                     }
+                }
+                else if(inputReader.InputState.HasPressedSelect)
+                {
+                    GameEventSystem.InvokePlaySound(SfxType.PlacementFail);
                 }
                 inputReader.InputState.HasPressedSelect = false;
             }
@@ -399,11 +449,10 @@
                         }
                     }
                 }
-
                 return true;
             }
         }
-        }
+    
         
     
     

@@ -2,8 +2,6 @@
 using System;
 using UnityEngine;
 
-namespace Fed.Game.Simulation
-{
     [Serializable]
     public class DayNightCycle
     {
@@ -23,7 +21,7 @@ namespace Fed.Game.Simulation
         public float timeOfDay = 6f;
 
         [Min(1f)]
-        public float dayLength = 120f;
+        public float dayLength = 1200f;
 
         public bool isRunning = true;
 
@@ -72,6 +70,13 @@ namespace Fed.Game.Simulation
 
         public float NormalizedTime =>
             Mathf.Repeat(timeOfDay, HoursPerDay) / HoursPerDay;
+        
+        [SerializeField] private float sunriseHour = 6f;
+        [SerializeField] private float sunsetHour = 19f;
+        
+        public bool IsDay =>
+            timeOfDay >= sunriseHour &&
+            timeOfDay < sunsetHour;
 
         public string FormattedTime
         {
@@ -215,4 +220,3 @@ namespace Fed.Game.Simulation
             RenderSettings.ambientLight = ambientColor;
         }
     }
-}
